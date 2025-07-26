@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 40px;">
+
+  <div style="max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; color: #333;">📝 To-Do List</h2>
+
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+      <input type="text" id="taskInput" placeholder="Enter a task" 
+             style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+      <button onclick="addTask()" 
+              style="padding: 10px 15px; border: none; background-color: #4CAF50; color: white; border-radius: 4px; cursor: pointer;">
+        Add
+      </button>
+    </div>
+
+    <ul id="taskList" style="list-style: none; padding: 0;"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById('taskInput');
+      const taskText = taskInput.value.trim();
+      if (taskText === '') {
+        alert('Please enter a task!');
+        return;
+      }
+
+      const li = document.createElement('li');
+      li.textContent = taskText;
+      li.style.padding = '10px';
+      li.style.borderBottom = '1px solid #ddd';
+      li.style.display = 'flex';
+      li.style.justifyContent = 'space-between';
+      li.style.alignItems = 'center';
+
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Delete';
+      delBtn.style.backgroundColor = '#e74c3c';
+      delBtn.style.color = 'white';
+      delBtn.style.border = 'none';
+      delBtn.style.padding = '5px 10px';
+      delBtn.style.borderRadius = '4px';
+      delBtn.style.cursor = 'pointer';
+
+      delBtn.onclick = () => li.remove();
+      li.appendChild(delBtn);
+
+      document.getElementById('taskList').appendChild(li);
+      taskInput.value = '';
+    }
+  </script>
+
+</body>
+</html>
